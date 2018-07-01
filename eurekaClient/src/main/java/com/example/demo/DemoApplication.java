@@ -21,5 +21,5 @@ public class DemoApplication {
     @RequestMapping("/hi")
     public String hi(@RequestParam String name){
         return "hi "+name+",i am from port:" + port;
-    }
+}
 }
