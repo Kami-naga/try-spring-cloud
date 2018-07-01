@@ -1,6 +1,7 @@
 package com.example.demo.Service;
 
 import com.example.demo.Service.Impl.HiServiceHystricImpl;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
