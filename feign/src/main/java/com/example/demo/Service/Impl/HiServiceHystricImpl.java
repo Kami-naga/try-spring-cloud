@@ -8,6 +8,6 @@ public class HiServiceHystricImpl implements HiService {
 
     @Override
     public String sayHiFromClientOne(String name){
-        return "sorry "+ name + " something wrong with your service(hystrix fallback)";
+        return "sorry "+ name + "\nsomething wrong with your service(feign hystrix fallback)";
     }
 }
