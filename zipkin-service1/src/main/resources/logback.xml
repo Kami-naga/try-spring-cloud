@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true" scanPeriod="60 seconds">
+    <springProperty scope="context" name="springAppName"
+                    source="spring.application.name" />
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%date [%thread] %-5level %logger{36} - %msg%n" />
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <appender name="stash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>127.0.0.1:4560</destination>
+
+        <!-- encoder is required -->
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder" />
+    </appender>
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>logs/logback/main_%d{yyyy-M-d}.log
+            </FileNamePattern>
+            <MaxHistory>10</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!--<appender name="async" class="ch.qos.logback.classic.AsyncAppender">-->
+    <!--<appender-ref ref="stash" />-->
+    <!--</appender>-->
+
+
+    <root level="info">                    <!-- 设置日志级别 -->
+        <appender-ref ref="stdout" />
+        <appender-ref ref="stash" />
+        <appender-ref ref="file"/>
+    </root>
+</configuration>
